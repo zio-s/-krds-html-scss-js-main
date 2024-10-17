@@ -1,0 +1,365 @@
+// 사이트 컨텐츠 내용
+
+:root {
+  --swiper-theme-color: red;
+}
+
+// 전역 스타일
+.swiper {
+  width: 100%;
+  height: 100%;
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none;
+  }
+  .swiper-button-next::before,
+  .swiper-button-prev::before {
+    content: "\f0c9";
+    display: flex;
+    @include lineAwesome;
+    font-size: 3rem;
+    font-size: 3rem;
+    color: $black;
+    opacity: 0.5;
+  }
+  .swiper-button-next::before {
+    content: "\f138";
+  }
+  .swiper-button-prev::before {
+    content: "\f137";
+  }
+}
+
+.slide-intro {
+  .swiper-slide {
+    position: relative;
+    img {
+      object-position: 50% 100%;
+    }
+    .text-area {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      width: 70%;
+      max-width: 400px;
+      opacity: 0;
+      transition: all 0.5s;
+      // .text-area__tit
+      &__tit {
+        font-size: 3rem;
+        color: $gray-90;
+      }
+      &__cont {
+        color: $gray-70;
+      }
+      &__goto {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 7px 20px;
+        background: $primary;
+        color: $white;
+      }
+    }
+    img {
+      height: 50vh;
+    }
+    &.swiper-slide-active {
+      .text-area {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  // .swiper-pagination {
+  //   display: none;
+  // }
+}
+
+// tablet
+@media screen and (min-width: 600px) {
+  .slide-intro .swiper-slide img {
+    height: 70vh;
+  }
+}
+
+// desktop
+@media screen and (min-width: 1024px) {
+  .slide-intro {
+    .swiper-slide {
+      img {
+        height: 90vh;
+      }
+      .text-area {
+        width: 100%;
+        max-width: none;
+        text-align: left;
+      }
+      .text-area__tit {
+        font-size: 6rem;
+      }
+      .text-area__cont {
+        font-size: 2rem;
+      }
+      .text-area__goto {
+        margin-top: 30px;
+      }
+    }
+    // .swiper-pagination {
+    //   display: block;
+    // }
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+}
+
+.slide-studio {
+  overflow: visible;
+  width: 80%;
+  margin-left: 0;
+  @include mobileMore {
+    width: 90%;
+  }
+  @include tabletMore {
+    width: 100%;
+    margin-left: auto;
+  }
+  .swiper-pagination {
+    bottom: -50px;
+  }
+}
+
+// hedaer
+#header.active {
+  &:before {
+    display: block;
+  }
+  .gnb__depth2 {
+    display: block;
+  }
+}
+#header {
+  background: $white;
+  width: 100%;
+  z-index: 1000;
+  position: relative;
+
+  &::before {
+    display: none;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 218px;
+    background: $gray-5;
+    top: 102px;
+    left: 0;
+  }
+  .inner {
+    // max-width: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 73px;
+    @include tabletMore{
+      height: auto;
+    }
+
+    .logo {
+      transform-origin: 0 50%;
+      transform: scale(.6);
+      @include tabletMore{
+        transform-origin: auto;
+        transform: scale(1);
+      }
+      a {
+        display: block;
+        width: 235px;
+        height: 54px;
+        background: url(../../../resources/images/pattern/common/logo.png) no-repeat 0 0 / contain;
+      }
+      span {
+        @include sr-only;
+      }
+    }
+  }
+}
+
+#gnb {
+  position: relative;
+  @include mobile{
+    display: none;
+
+  }
+  .gnb__bg {
+    width: 100%;
+    height: 102px;
+    position: absolute;
+    top: 102px;
+  }
+  .gnb__depth1 {
+    display: flex;
+
+    > li {
+      &:hover span {
+        color: $primary;
+        &::after {
+          width: 100%;
+        }
+      }
+      position: relative;
+      &:first-child {
+        .gnb__depth2 {
+          &::before {
+            content: "";
+            height: 100%;
+            position: absolute;
+            width: 1px;
+            top: 0;
+            left: 0;
+            background: $gray-20;
+          }
+        }
+      }
+      > a {
+        height: 102px;
+        font-size: 2rem;
+        display: block;
+        padding: 0 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: $font-bold;
+
+        span {
+          display: flex;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            transform: translateX(-50%);
+            height: 4px;
+            border-radius: 2px;
+            background: $primary;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+  }
+
+  .gnb__depth2 {
+    display: none;
+    position: absolute;
+    background: $white;
+    top: 102px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 30px 0;
+    background-color: $gray-5;
+    &::after {
+      content: "";
+      height: 100%;
+      position: absolute;
+      width: 1px;
+      top: 0;
+      right: 0;
+      background: $gray-20;
+    }
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 0;
+      color: $gray-70;
+      &:hover {
+        background-color: $gray-20;
+        font-weight: $font-bold;
+        color: $gray-90;
+      }
+    }
+  }
+}
+
+.util {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  .lang {
+    display: none;
+    @include tabletMore{
+      display: block;
+    }
+    .lang__list.active{
+      display: block;
+    }
+    position: relative;
+    .lang__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::after {
+        margin-left: 5px;
+        content: "\f0d7";
+        font-size: 2rem;
+        @include lineAwesome;
+      }
+    }
+    .lang__list {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 35px;
+      background: $gray-10;
+      li{
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+    }
+  }
+  .search {
+    &::before {
+      font-size: 3rem;
+      content: "\f002";
+      display: flex;
+      @include lineAwesome;
+    }
+  }
+  .all-menu {
+    &::before {
+      content: "\f0c9";
+      display: flex;
+      @include lineAwesome;
+      font-size: 3rem;
+    }
+  }
+}
