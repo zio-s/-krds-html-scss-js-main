@@ -64,10 +64,13 @@
       max-width: 400px;
       opacity: 0;
       transition: all 0.5s;
+
       // .text-area__tit
       &__tit {
         font-size: 3rem;
         color: $gray-90;
+        font-family: "GmarketSansMedium";
+        font-weight: $font-medium;
       }
       &__cont {
         color: $gray-70;
@@ -153,10 +156,16 @@
 // hedaer
 #header.active {
   &:before {
-    display: block;
+    height: 218px;
+    opacity: 1;
+    visibility: visible;
+    
   }
   .gnb__depth2 {
-    display: block;
+    height: 218px;
+    padding: 30px 0;
+    // opacity: 1;
+    // visibility: visible;
   }
 }
 #header {
@@ -166,14 +175,17 @@
   position: relative;
 
   &::before {
-    display: none;
+    opacity: 1;
+    visibility: hidden;
     content: "";
     position: absolute;
     width: 100%;
-    height: 218px;
+    height: 0px;
     background: $gray-5;
     top: 102px;
     left: 0;
+    transition: .5s;
+
   }
   .inner {
     // max-width: none;
@@ -181,14 +193,14 @@
     justify-content: space-between;
     align-items: center;
     height: 73px;
-    @include tabletMore{
+    @include tabletMore {
       height: auto;
     }
 
     .logo {
       transform-origin: 0 50%;
-      transform: scale(.6);
-      @include tabletMore{
+      transform: scale(0.6);
+      @include tabletMore {
         transform-origin: auto;
         transform: scale(1);
       }
@@ -207,9 +219,8 @@
 
 #gnb {
   position: relative;
-  @include mobile{
+  @include mobile {
     display: none;
-
   }
   .gnb__bg {
     width: 100%;
@@ -276,15 +287,21 @@
   }
 
   .gnb__depth2 {
-    display: none;
+    // display: none;
+    // opacity: 0;
+    // visibility: hidden;
     position: absolute;
     background: $white;
     top: 102px;
+    height: 0px;
     left: 0;
     right: 0;
     text-align: center;
-    padding: 30px 0;
+    padding: 0px 0;
+    box-sizing: border-box;
     background-color: $gray-5;
+    transition: .5s;
+    overflow: hidden;
     &::after {
       content: "";
       height: 100%;
@@ -316,10 +333,10 @@
   gap: 30px;
   .lang {
     display: none;
-    @include tabletMore{
+    @include tabletMore {
       display: block;
     }
-    .lang__list.active{
+    .lang__list.active {
       display: block;
     }
     position: relative;
@@ -340,7 +357,7 @@
       left: 0;
       top: 35px;
       background: $gray-10;
-      li{
+      li {
         border: 1px solid #ddd;
         padding: 10px;
       }
@@ -363,3 +380,5 @@
     }
   }
 }
+
+
